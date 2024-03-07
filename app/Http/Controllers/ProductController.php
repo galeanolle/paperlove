@@ -410,5 +410,32 @@ class ProductController extends Controller
         return view('admin.product', compact ('products'))->with('search',request('search'));
     }
 
+    public function duplicate($id){
+
+        $product = Product::findOrFail($id);
+
+        $productNew = new Product();
+        $productNew->name = '[Duplicado] - '.$product->name;
+        $productNew->price = $product->price;
+        $productNew->category_id = $product->category_id;
+        $productNew->image = $product->image;
+        $productNew->slug = $product->slug;
+        $productNew->quantity = $product->quantity;
+        $productNew->save();
+
+        $stocks = Stock::where('product_id','=',$product->id)->get();
+
+        foreach($stocks as $stock){
+            $stocksNew = new Stock();
+            $stocksNew->product_id = $productNew->id;
+            $stocksNew->variant_id = $stock->variant_id;
+            $stocksNew->quantity = $stock->quantity;
+            $stocksNew->save();
+        }   
+
+        return redirect()->route('admin.product')->with('success','El producto fue duplicado correctamente!');
+
+    }
+
 
 }

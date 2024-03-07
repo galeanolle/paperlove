@@ -52,6 +52,8 @@ Route::post('/admin-product/add', 'ProductController@create')->name('product.cre
 Route::get('/admin-product/edit/{id}', 'ProductController@editform')->name('product.editform')->middleware(['auth','admin']);
 Route::patch('/admin-product/edit/{id}', 'ProductController@edit')->name('product.edit')->middleware(['auth','admin']);
 Route::get('/admin-product/remove/{id}', 'ProductController@remove')->name('product.remove')->middleware(['auth','admin']);
+Route::get('/admin-product/duplicate/{id}', 'ProductController@duplicate')->name('product.duplicate')->middleware(['auth','admin']);
+
 
 Route::get('/admin-stock/{id}', 'StockController@index')->name('admin.stock')->middleware(['auth','admin']);
 

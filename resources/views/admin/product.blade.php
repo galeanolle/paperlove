@@ -48,6 +48,7 @@
                     <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -66,6 +67,9 @@
                     </td>
                     <td>
                         <a href="{{ route('admin.stock',['id'=>$product->id]) }}" class="btn btn-success w-80 m-1" style="color:white;"><i class="fa fa-check"></i> Stock</a>
+                    </td>
+                    <td>
+                        <a href="{{ route('product.duplicate',['id'=>$product->id]) }}" class="btn btn-info w-80 m-1" style="color:white;"><i class="fa fa-plus"></i> Duplicar</a>
                     </td>
                   </tr>
                 @endforeach
