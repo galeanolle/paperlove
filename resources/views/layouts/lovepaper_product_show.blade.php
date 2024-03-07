@@ -3734,6 +3734,10 @@ function addCartItem(param){
     var itemDiscount = '-1%';
     var itemPriceDiscount = '0,00';
     var itemPrice = param.totalPrice;
+    var itemPriceUnity = param.item.price;
+    var itemVariantName = param.variant_name;
+    var itemVariantGroupName = param.variant_group_name;
+
     var html = '<div class="ajax-cart-item" id="'+itemId+'">';
     html += '<div class="ajax-cart-item-image-col ajax-cart-item-col">';
     html += '<img src="'+itemImage+'">';
@@ -3743,6 +3747,7 @@ function addCartItem(param){
     html += '<a class="h6-xs" href="'+itemUrl+'">';
     html += '<span data-component="name.short-name">'+itemName+'</span>';
     html += '</a>';
+    html += '<p><b>Modelo</b>: '+itemVariantGroupName+' '+itemVariantName+'</p>';
     html += '</div>';
     html += '<div class="pull-left m-top-quarter" data-component="line-item.quantity">';
     html += '<button type="button" class="cart-quantity-btn ajax-cart-quantity-btn cart-min-quantity" onclick="minQuantity('+param.id+');">';
@@ -3760,6 +3765,16 @@ function addCartItem(param){
     html += '</div>';
 
 
+      html += '<div class="visible-phone pull-right text-right " data-component="line-item.subtotal">';
+    /*
+    html += '<div class="cart-compare-price-container">';
+    html += '<span class="text-accent font-small weight-strong">'+itemDiscount+'  </span>';
+    html += '<span class="price-compare font-small opacity-50" data-line-item-id="1642445011" data-component="subtotal_compare_price.value" data-component-value="$18.000,00">$'+itemPriceDiscount+'</span>';
+    html += '</div>';
+    */
+    html += '<span class="cart-item-subtotal h6-xs" data-line-item-id="1642445011" data-component="subtotal.value" data-component-value="1159800"> ('+itemQuantity+' x $'+itemPriceUnity+')</span>';
+    html += '</div>';
+
     html += '<div class="visible-phone pull-right text-right " data-component="line-item.subtotal">';
     /*
     html += '<div class="cart-compare-price-container">';
@@ -3767,9 +3782,27 @@ function addCartItem(param){
     html += '<span class="price-compare font-small opacity-50" data-line-item-id="1642445011" data-component="subtotal_compare_price.value" data-component-value="$18.000,00">$'+itemPriceDiscount+'</span>';
     html += '</div>';
     */
-    html += '<span class="cart-item-subtotal h6-xs" data-line-item-id="1642445011" data-component="subtotal.value" data-component-value="1159800">$'+itemPrice+'</span>';
+    html += '<span class="cart-item-subtotal h6-xs" data-line-item-id="1642445011" data-component="subtotal.value" data-component-value="1159800">Subtotal: $'+itemPrice+'</span>';
     html += '</div>';
+
+
+
+
     html += '</div>';
+
+
+
+
+     html += '<div class="ajax-cart-item-subtotal ajax-cart-item-col cart-item-subtotal text-right hidden-phone" data-component="line-item.subtotal">';
+   /*
+    html += '<div class="cart-compare-price-container">';
+    html += '<span class="text-accent font-small weight-strong">'+itemDiscount+'</span>';
+    html += '<span class="price-compare font-small opacity-50" data-line-item-id="1642445011" data-component="subtotal_compare_price.value" data-component-value="$18.000,00">$'+itemPriceDiscount+'</span>';
+    html += '</div>';
+    */
+    html += '<span class="js-cart-item-subtotal" data-line-item-id="1642445011" data-component="subtotal.value" data-component-value="1159800">'+itemQuantity+' x $'+itemPriceUnity+'</span>';
+    html += '</div>';
+
     html += '<div class="ajax-cart-item-subtotal ajax-cart-item-col cart-item-subtotal text-right hidden-phone" data-component="line-item.subtotal">';
    /*
     html += '<div class="cart-compare-price-container">';
@@ -3777,8 +3810,10 @@ function addCartItem(param){
     html += '<span class="price-compare font-small opacity-50" data-line-item-id="1642445011" data-component="subtotal_compare_price.value" data-component-value="$18.000,00">$'+itemPriceDiscount+'</span>';
     html += '</div>';
     */
-    html += '<span class="js-cart-item-subtotal" data-line-item-id="1642445011" data-component="subtotal.value" data-component-value="1159800">$'+itemPrice+'</span>';
+    html += '<span class="js-cart-item-subtotal" data-line-item-id="1642445011" data-component="subtotal.value" data-component-value="1159800">Subtotal: $'+itemPrice+'</span>';
     html += '</div>';
+
+
     html += '<div class="ajax-cart-item-delete-col cart-delete-container ajax-cart-item-col text-right">';
     html += '<button type="button" class="cart-btn-delete ajax-cart-btn-delete pull-right p-top-none" onclick="removeCartItem('+param.id+')" data-component="line-item.remove">';
     html += '<div class="cart-delete-svg-icon svg-icon-text">';
