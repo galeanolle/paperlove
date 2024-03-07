@@ -1,3 +1,0 @@
-Token GIT
-
-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
