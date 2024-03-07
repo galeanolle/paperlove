@@ -1,0 +1,23 @@
+.logo-img{ width:60%!important }
+.header-padding-top { padding-top:50px!important }
+.link-inicio { display:block; }
+
+@media (max-width: 1199px) and (min-width: 770px) {
+}
+
+@media (max-width: 979px) {
+}
+
+@media (max-width: 769px) {
+    .logo-img{ width:50%!important }
+    .top-header .container {
+      padding-top: 0px!important;
+      padding-bottom: 0px!important;
+    }
+    .header-padding-top { padding-top:0px!important }
+    .link-inicio { display:none!important; }
+}
+
+.contact-number {
+    font-size: 16px!important;
+}
