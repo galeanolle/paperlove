@@ -12,7 +12,7 @@ class VariantSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('Variants')->insert([
+        DB::table('variants')->insert([
             [
                 'id'=>1,
                 'variant_group_id'=>1,

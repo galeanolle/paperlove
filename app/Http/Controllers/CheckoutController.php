@@ -28,7 +28,6 @@ class CheckoutController extends Controller
     }
 
     public function payment(Request $request){
-/*
         $payment_id = $request->input('payment_id');
         $status = $request->input('status');
         $external_reference = $request->input('external_reference');
@@ -37,8 +36,6 @@ class CheckoutController extends Controller
         $order->payment_id = $payment_id;
         $order->status = $status;
         $order->save();
-*/
-        $status = 'success';
         return view('checkout.payment',compact('status'));
 
     }

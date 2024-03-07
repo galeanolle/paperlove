@@ -11,6 +11,7 @@ use App\Variant;
 use Illuminate\Http\Request;
 use DB;
 use Session;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {

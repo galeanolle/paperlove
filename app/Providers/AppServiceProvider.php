@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
 
-        view()->share('categoryList', $this->getCategoryList());
+      view()->share('categoryList', $this->getCategoryList());
     }
 
     private function getCategoryList(){
