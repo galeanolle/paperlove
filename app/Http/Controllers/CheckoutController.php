@@ -109,7 +109,7 @@ class CheckoutController extends Controller
         $url = 'https://lovepaper.com.ar';
         if($request->get('paymenttype')==1){
             // Pago con MercadoPago
-            MercadoPago\SDK::setAccessToken(config('services.mercadopago.access_token'));
+            MercadoPago\SDK::setAccessToken('APP_USR-5313401638247144-021215-08fdf3249b42e0a553e4b72d951bdc8f-521851047');
 
             // Default value is set to SERVER
             //MercadoPago\SDK::setRuntimeEnviroment(MercadoPago\SDK::LOCAL);
@@ -117,9 +117,9 @@ class CheckoutController extends Controller
             $preference = new MercadoPago\Preference();
 
             $preference->back_urls = array(
-                'success' => route('checkout.payment'),
-                'pending' => route('checkout.payment'),
-                'failure' => route('checkout.payment')
+                'success' => 'https://lovepaper.com.ar/checkout/payment',
+                'pending' => 'https://lovepaper.com.ar/checkout/payment',
+                'failure' => 'https://lovepaper.com.ar/checkout/payment'
             );
 
             $preference->auto_return = 'approved';
