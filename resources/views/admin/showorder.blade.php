@@ -82,7 +82,7 @@
                             @if($id->status=='created')
                
 
-                           <a href="#" data-url="{{ route('admin.order.complete',['id'=>$id->id]) }}" data-title="Confirmar pago"  data-content="Confirma el pago en efectivo en el local?" class="btn btn-danger w-100 m-1 confirm" style="color:white;"><i class="fa fa-trash"></i> Confirmar pago</a>
+                           <a href="#" data-url="{{ route('admin.order.complete',['id'=>$id->id]) }}" data-title="Confirmar pago"  data-content="Confirma el pago en efectivo en el local?" class="btn btn-success w-100 m-1 confirm" style="color:white;"><i class="fa fa-trash"></i> Confirmar pago</a>
 
                             @endif
                             @if($id->status=='success')
