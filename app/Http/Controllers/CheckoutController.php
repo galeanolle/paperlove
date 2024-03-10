@@ -172,18 +172,16 @@ class CheckoutController extends Controller
         $result = false;
         if($request->ajax())
         {   
-            
-
-            $cuit = '30-53625919-4';
+            $cuit = '20-39760789-6';
             $codigoPostalOrigen ='1722';
             $codigoPostalDestino = $request->get('zipcode');
             $cantidadPaquetes = $request->get('quantity');
             $valorDeclarado = $request->get('total_price');
-            $peso = '0.2';
-            $volumen = '0.50';
-            $operativa = '64665'; // puerta a puerta
+            $peso = '0.150';
+            $volumen = '0.0003';
+            $operativa = '412889'; // puerta a puerta
 
-            $url='http://webservice.oca.com.ar/ePak_tracking_TEST/Oep_TrackEPak.asmx/Tarifar_Envio_Corporativo';
+            $url='https://webservice.oca.com.ar/ePak_tracking/Oep_TrackEPak.asmx/Tarifar_Envio_Corporativo';
             $url.='?PesoTotal='.$peso;
             $url.='&VolumenTotal='.$volumen;
             $url.='&CodigoPostalOrigen='.$codigoPostalOrigen;
@@ -191,7 +189,7 @@ class CheckoutController extends Controller
             $url.='&CantidadPaquetes='.$cantidadPaquetes;
             $url.='&ValorDeclarado='.$valorDeclarado;
             $url.='&CUIT='.$cuit;
-            $url.='&Operativa=64665';
+            $url.='&Operativa='.$operativa;
 
             $response = Http::get($url);
 

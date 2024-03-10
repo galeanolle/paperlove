@@ -707,46 +707,6 @@ Ver carrito
 <div class="row-fluid m-bottom-half facebook-widget-row visible-when-content-ready text-center-xs">
 </div>
 
-<div id="news-popup" class="modal hide fade news-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <div class="modal-body" style="display: none;">
-<button type="button" class="news btn-floating m-top-quarter m-right-quarter" data-dismiss="modal" aria-hidden="true"><svg class="svg-inline--fa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z" /></svg></button>
-<div class="row-fluid">
-<div class=" span7 ">
-<div class="logo-img-container ">
-<img src="/images/empty-placeholder.png" data-src="/images/logo-936715512-1702852481-9ea32bcafdadd48cd70f7676eab933741702852482-480-0.webp" class="lazyload logo-img">
-</div>
-<div class="hidden">
-<a class="logo-text h1" href="/">LOVE PAPER</a>
-</div>
-<p class="newsletter text-center">¿Te gusta lo que ves? ¡Recibí todas nuestras novedades!</p>
-<div id="news-popup-form-container">
-<form id="news-popup-form" method="post" action="/winnie-pooh" class="js-news-form" data-store="newsletter-form-popup">
-<div class="input-append news full-width m-top">
-<div class="form-group full-width pull-left">
-<input type="text" name="name" class="js-mandatory-field form-control row-fluid pull-left" onfocus="if (this.value == 'Nombre') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Nombre';}" value="Nombre" />
-</div>
-<div class="form-group full-width pull-left">
-<input type="text" class="js-mandatory-field form-control row-fluid pull-left" onfocus="if (this.value == 'Tu e-mail') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Tu e-mail';}" value="Tu e-mail" name="email">
-</div>
-<div class="winnie-pooh hidden">
-<label for="winnie-pooh-newsletter">No completar este campo</label>
-<input id="winnie-pooh-newsletter" type="text" name="winnie-pooh" />
-</div>
-<input type="hidden" name="message" value="Pedido de inscripción a newsletter" />
-<input type="hidden" name="type" value="newsletter-popup" />
-<input type="submit" name="contact" class="js-news-popup-submit btn btn-primary full-width pull-left" value="Enviar">
-</div>
-</form>
-<div style="display: none;" class="js-news-spinner h6 text-center m-top"><svg class="svg-inline--fa fa-spin svg-icon-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M483.515 28.485L431.35 80.65C386.475 35.767 324.485 8 256 8 123.228 8 14.824 112.338 8.31 243.493 7.971 250.311 13.475 256 20.301 256h28.045c6.353 0 11.613-4.952 11.973-11.294C66.161 141.649 151.453 60 256 60c54.163 0 103.157 21.923 138.614 57.386l-54.128 54.129c-7.56 7.56-2.206 20.485 8.485 20.485H492c6.627 0 12-5.373 12-12V36.971c0-10.691-12.926-16.045-20.485-8.486zM491.699 256h-28.045c-6.353 0-11.613 4.952-11.973 11.294C445.839 370.351 360.547 452 256 452c-54.163 0-103.157-21.923-138.614-57.386l54.128-54.129c7.56-7.56 2.206-20.485-8.485-20.485H20c-6.627 0-12 5.373-12 12v143.029c0 10.691 12.926 16.045 20.485 8.485L80.65 431.35C125.525 476.233 187.516 504 256 504c132.773 0 241.176-104.338 247.69-235.493.339-6.818-5.165-12.507-11.991-12.507z" /></svg> Enviando...</div>
-<div style="display: none;" class="js-news-popup-success contact-ok alert alert-success">¡Gracias por suscribirte! A partir de ahora vas a recibir nuestras novedades en tu email</div>
-<div style="display: none;" class="js-news-popup-failed contact-error alert alert-danger">Necesitamos tu email para enviarte nuestras novedades.</div>
-</div>
-</div>
-
-</div>
-</div>
-</div>
-
-
 
 <script type="text/javascript">
 (function() {
