@@ -27,6 +27,8 @@
                             <div class="id" style="width:100px">ID</div>
                             <div class="id" style="width:220px">Fecha</div>
                             <div class="name" style="width:200px">Nombre</div>
+                            <div class="name" style="width:200px">Subtotal</div>
+                            <div class="name" style="width:200px">Envio</div>
                             <div class="name" style="width:200px">Total</div>
                             <div class="status  ml-auto">Estado</div> 
                         </div>
@@ -40,6 +42,8 @@
                             <div class="id" style="width:220px">{{ $order->order_created_at }}</div>
                             <div class="name" style="width:200px">{{ $order->name }}</div>
                             <div class="name" style="width:200px">${{ $order->total }}</div>
+                            <div class="name" style="width:200px">${{ $order->shippingcost }}</div>
+                            <div class="name" style="width:200px">${{ $order->total + $order->shippingcost }}</div>
                              @if($order->status=='created')
                                 <div class="status text-success ml-auto" style="color:black;">Iniciada</div> 
                              @endif

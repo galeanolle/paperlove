@@ -592,15 +592,19 @@ Ver carrito
 
 
 <div class="form-group ">
-<label for="name" class="form-label">Código Postal <a href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank" style="color:blue;">(Busca tu còdigo postal aqui)
+<label for="name" class="form-label">Código Postal <a href="https://www.oca.com.ar/Busquedas/CodigosPostales" target="_blank" style="color:blue;">(Busca tu còdigo postal aqui)
 )
 </a></label>
 <!--
 <input type="text" name="name" id="name" value class="form-control " placeholder="ej.: María Perez" />
 -->
 
-<input id="zipcode" type="text" class="form-control @error('zipcode') is-invalid @enderror" name="zipcode" value="{{ old('zipcode') }}" required autocomplete="zipcode" placeholder="ej.: Av. Cabildo 1234 Piso 2 Depto C">
+<input id="zipcode" type="number" class="form-control @error('zipcode') is-invalid @enderror" name="zipcode" value="{{ old('zipcode') }}" required autocomplete="zipcode" placeholder="ej.: 1414">
 
+<button type="button" class="btn btn-primary calcular-envio" id="calcular-envio" style="
+    margin-top: 10px;
+">Calcular costo de envío
+</button>
                                 @error('zipcode')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -629,7 +633,15 @@ Ver carrito
 <hr>
 
 <div class="form-group ">
-<label for="name" class="form-label" style="font-size:18px">Total a pagar</label>
+<label for="name" class="form-label" style="font-size:18px">Total a pagar   
+
+<span class="btn total-a-pagar btn-success
+    " style="
+    font-size: 22px;
+    font-weight: bold;
+    padding-left: 15px;
+">${{$total}}</span>
+</label>
 
 </div>
 
@@ -656,7 +668,7 @@ $ {{$total}}
 </ul> </div>
 
 <!--- VER ENVIO -->
-<div id="product-shipping-container" class="js-product-shipping-container row-fluid" data-shipping-url="/envio/" style="display:none;">
+<div id="product-shipping-container" class="js-product-shipping-container row-fluid costo-envio-bloque" data-shipping-url="/envio/" style="display:none;">
 
 <ul class="js-store-branches-container box-container p-none list-unstyled list-readonly">
 <li class="list-item" data-store="branch-item-branch_144277">
@@ -666,8 +678,8 @@ $ {{$total}}
 
 </div>
 <div class="span3 col-xs-3-custom pull-right-xs h6 text-right">
-<strong class="shipping-method-price" style="">
-$ 1200
+<strong class="shipping-method-price costo-envio-informado" style="">
+$ 0
     
 
 </strong>
@@ -703,7 +715,7 @@ Showroom <span class="m-left-quarter">Migueletes 2380, Belgrano, CABA, Buenos Ai
 <div class="span3 col-xs-3-custom pull-right-xs h6 text-right">
 <strong class="shipping-method-price text-primary">
 <label class="md_radio">
-  <input name="form2" type="radio" checked />
+  <input name="tipo_entrega" class="tipo_entrega" id="tipo_entrega_1" value="1" type="radio" checked />
   <span class="md_radio__button"></span>
  
 </label>
@@ -715,7 +727,7 @@ Showroom <span class="m-left-quarter">Migueletes 2380, Belgrano, CABA, Buenos Ai
 </ul> </div>
 
 <!-- paga en efectivo en nuestro local -->
-<div id="product-shipping-container" class="js-product-shipping-container row-fluid" data-shipping-url="/envio/" style="display:none;">
+<div id="product-shipping-container" class="js-product-shipping-container row-fluid costo-envio-opcion" data-shipping-url="/envio/" style="display:none;">
 
 <ul class="js-store-branches-container box-container p-none list-unstyled list-readonly">
 <li class="list-item" data-store="branch-item-branch_144277">
@@ -724,18 +736,22 @@ Showroom <span class="m-left-quarter">Migueletes 2380, Belgrano, CABA, Buenos Ai
 </h6>
 
 <p class="shipping-method-name">
-Domicilio 
-<span class="m-left-quarter">Migueletes 2380, Belgrano, CABA, Buenos Aires, Argentina</span>
+Domicilio: 
+<span class="m-left-quarter" id="domicilio-informado"></span>
 </p>
 <p class="shipping-method-name">
+Código postal: 
+<span class="m-left-quarter" id="zipcode-informado"></span>
+</p>
+<p class="shipping-method-name" style="font-size: 18px;font-weight: bold;">
 Total 
-<span class="m-left-quarter">$1200</span>
+<span class="m-left-quarter" id="costo-envio"></span>
 </p>
 </div>
 <div class="span3 col-xs-3-custom pull-right-xs h6 text-right">
 <strong class="shipping-method-price text-primary">
 <label class="md_radio">
-  <input name="form2" type="radio" />
+  <input name="tipo_entrega" class="tipo_entrega" id="tipo_entrega_2" value="2"  type="radio" />
   <span class="md_radio__button"></span>
  
 </label>
@@ -816,7 +832,7 @@ Showroom <span class="m-left-quarter">Migueletes 2380, Belgrano, CABA, Buenos Ai
 
 
 
-
+<input type="hidden" name="envio" value="" id="costo-envio-form" />
 <input class="btn btn-primary full-width" type="submit" value="Realizar pago" id="pagar" />
 <br>
 <br>
@@ -1165,6 +1181,15 @@ lazySizesConfig.hFac = 0.1;
 window.onload = function(){
 
      dibujarCarrito();
+
+$( "#address" ).on( "keyup", function() {
+  $('#domicilio-informado').html($(this).val());
+} );
+
+$( "#zipcode" ).on( "keyup", function() {
+  $('#zipcode-informado').html($(this).val());
+} );
+
     $(document).on("click", ".js-accordion-toggle", function(e) {
         e.preventDefault();
         if($(this).hasClass("js-accordion-show-only")){
@@ -2321,6 +2346,17 @@ window.onload = function(){
         };
         */
 
+
+    $('.tipo_entrega').change(function(){
+        if($(this).val()==1){
+            $('.costo-envio-bloque').hide();
+            $('.total-a-pagar').html('$'+parseFloat(globalTotalPrice).toFixed(2));
+        }else{
+            $('.costo-envio-bloque').show();
+            $('.total-a-pagar').html('$'+parseFloat(globalTotalPrice+globalTotalEnvio).toFixed(2));
+        }
+    });
+
     $('#pagar').click(function(){
         $(this).val('Procesando...');
         $(this).prop("disabled", true);
@@ -2328,6 +2364,9 @@ window.onload = function(){
     });
     
     
+    var globalTotalPrice = 0;
+    var globalTotalQuantity = 0;
+    var globalTotalEnvio = 0;
 
     function dibujarCarrito(){
 
@@ -2362,6 +2401,8 @@ window.onload = function(){
                     $('.cart-total-quantity').html(data.cart.totalQuantity);
                     $('.cart-total-price').html('$'+data.cart.totalPrice);
                     $('.cart-subtotal-price').html('$'+data.cart.totalPrice);
+                    globalTotalPrice = data.cart.totalPrice;
+                    globalTotalQuantity = data.cart.totalQuantity;
                 }
             });
     }
@@ -2437,6 +2478,63 @@ function minQuantity(id){
             $('#quantity_'+id).val(q);
             $('.cart-min-quantity').removeProp('disabled');
         }
+    });
+}
+
+
+$('.calcular-envio').click(function(){
+    calcularEnvio();
+});
+
+function calcularEnvio(){
+
+    if($('#zipcode').val()==''){
+        alert('Debe ingresar un código postal');
+        return;
+    }
+    
+    $('.calcular-envio').html('Calculando envio...');
+    $('.calcular-envio').addClass("disabled");
+    $('#pagar').val('Calculando envio...');
+    $('#pagar').addClass("disabled");
+
+    $.ajax({
+        url:"/checkout/envio",
+        method:'GET',
+        data:{
+            total_price:{{$total}},
+            quantity:{{$quantity}},
+            zipcode:$('#zipcode').val()
+        },
+        dataType:'json',
+        success:function(data)
+        {
+            console.log(data);
+
+            if(data.result){
+                var price = parseFloat(data.price).toFixed(2);
+                globalTotalEnvio = data.price;
+                alert('El costo de envio es de: $'+price);
+                $('#costo-envio').html('$'+price);
+                $('#costo-envio-form').val(price);
+                var total = {{$total}} + data.price;
+                $('.total-a-pagar').html('$'+parseFloat(total).toFixed(2));
+                $('.costo-envio-opcion').show();
+                $("#tipo_entrega_2").prop('checked', true);
+                $('.costo-envio-informado').html('$'+price);
+                $('.costo-envio-bloque').show();
+
+
+            }else{
+                alert('El costo de envío no ha podido ser calculado, verifique su código postal ingresado.');
+            }   
+
+            $('#pagar').val('Realizar pago');
+            $('#pagar').removeClass("disabled");
+            $('.calcular-envio').html('Calcular costo de envío');
+            $('.calcular-envio').removeClass("disabled");
+        }
+
     });
 }
 
@@ -2596,6 +2694,9 @@ function addCartItem(param){
   box-shadow: 0 0 8px #5e9ed6;
 }
 
+.btn-primary.disabled{
+    background-color:#49546b!important;
+}
 
     </style>
 </body>

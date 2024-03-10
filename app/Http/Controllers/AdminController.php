@@ -71,6 +71,7 @@ class AdminController extends Controller
             'orders.created_at as order_created_at',
             'users.name',
             'orders.total',
+            'orders.shippingcost',
             'orders.status'
         )
         ->orderBy('orders.created_at','DESC')

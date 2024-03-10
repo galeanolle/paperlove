@@ -99,6 +99,7 @@ Route::get('/checkout','CheckoutController@index')->name('checkout.index')->midd
 Route::post('/checkout','CheckoutController@checkout')->name('checkout')->middleware('auth');
 Route::any('/checkout/payment','CheckoutController@payment')->name('checkout.payment');
 Route::any('/checkout/notification','CheckoutController@notification')->name('checkout.notification');
+Route::any('/checkout/envio','CheckoutController@envio')->name('checkout.envio');
 
 
 Route::get('/user/order','OrderController@show')->name('order.show')->middleware('auth');

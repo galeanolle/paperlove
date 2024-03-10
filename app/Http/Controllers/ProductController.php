@@ -60,7 +60,7 @@ class ProductController extends Controller
             }
 
 
-            $products = $products->paginate(20)->appends(request()->query());
+            $products = $products->paginate(30)->appends(request()->query());
 
             $categories = Category::where('id_parent','=',0)->get();
             $variantGroups = Variant::leftjoin('variant_groups','variants.variant_group_id','=','variant_groups.id')
@@ -115,7 +115,7 @@ class ProductController extends Controller
                         $products = $products->orderBy('stocks.quantity','asc');
                 }
 
-                $products = $products->paginate(2)->appends(request()->query());
+                $products = $products->paginate(30)->appends(request()->query());
 
 
 
@@ -183,7 +183,7 @@ class ProductController extends Controller
                             $products = $products->orderBy('stocks.quantity','asc');
                     }
 
-                    $products = $products->paginate(2)->appends(request()->query());
+                    $products = $products->paginate(30)->appends(request()->query());
 
                     $variantGroups = Variant::leftjoin('variant_groups','variants.variant_group_id','=','variant_groups.id')
                     ->leftjoin('stocks','variants.id','=','stocks.variant_id')
@@ -405,7 +405,7 @@ class ProductController extends Controller
                'c2.name as parent',
                'categories.name as category',
                'categories.id as category_id',
-            )->paginate(25)->appends(request()->query());
+            )->paginate(15)->appends(request()->query());
         //dd($products);
         return view('admin.product', compact ('products'))->with('search',request('search'));
     }

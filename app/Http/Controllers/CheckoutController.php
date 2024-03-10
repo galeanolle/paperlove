@@ -11,6 +11,8 @@ use App\Stock;
 use DB;
 use Illuminate\Support\Facades\Redirect;
 
+use Illuminate\Support\Facades\Http;
+
 use MercadoPago;
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
@@ -88,6 +90,11 @@ class CheckoutController extends Controller
         $order->address = $request->input('address');
         $order->zipcode = $request->input('zipcode');
         $order->total = $cart->totalPrice;
+
+        if($request->get('tipo_entrega')==2){
+            $order->shippingcost = $request->get('envio');
+        }
+
         Auth::user()->orders()->save($order);
 
 
@@ -123,6 +130,15 @@ class CheckoutController extends Controller
             array_push($itemsMP,$itemMP);
         }
 
+        if($request->get('tipo_entrega')==2){
+            $itemMP = new MercadoPago\Item();
+            $itemMP->id = 0;
+            $itemMP->title = 'Costo de envio';
+            $itemMP->quantity = 1;
+            $itemMP->unit_price = $request->get('envio');
+            array_push($itemsMP,$itemMP);
+        }
+
         $preference->items = $itemsMP;
         $preference->external_reference = $order->id;
         $preference->save(); # Save the preference and send the HTTP Request to create
@@ -135,8 +151,51 @@ class CheckoutController extends Controller
         
         return Redirect::to($url);
         
-        // si la opcion no es mercadopago
+        //si la opcion no es mercadopago
 
         //return redirect()->route('home.index')->with('success','Successfully purchased the products!');
+    }
+
+    function envio(Request $request){
+
+        $result = false;
+        if($request->ajax())
+        {   
+
+            $cuit = '30-53625919-4';
+            $codigoPostalOrigen ='1722';
+            $codigoPostalDestino = $request->get('zipcode');
+            $cantidadPaquetes = $request->get('quantity');
+            $valorDeclarado = $request->get('total_price');
+            $peso = '0.2';
+            $volumen = '0.50';
+            $operativa = '64665'; // puerta a puerta
+
+            $url='http://webservice.oca.com.ar/ePak_tracking_TEST/Oep_TrackEPak.asmx/Tarifar_Envio_Corporativo';
+            $url.='?PesoTotal='.$peso;
+            $url.='&VolumenTotal='.$volumen;
+            $url.='&CodigoPostalOrigen='.$codigoPostalOrigen;
+            $url.='&CodigoPostalDestino='.$codigoPostalDestino;
+            $url.='&CantidadPaquetes='.$cantidadPaquetes;
+            $url.='&ValorDeclarado='.$valorDeclarado;
+            $url.='&CUIT='.$cuit;
+            $url.='&Operativa=64665';
+
+            $response = Http::get($url);
+
+            $match;
+            preg_match('/<Precio>(.*?)<\/Precio>/s', $response, $match);
+            $price = 0;
+            if(count($match)>0){
+                $price = (float)$match[1];
+                $result = true;
+            }else{
+                $result = false;
+            }
+
+
+            return response()->json(['result' => $result, 'price' => $price ]);
+        }
+
     }
 }

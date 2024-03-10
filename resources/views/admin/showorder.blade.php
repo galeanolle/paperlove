@@ -16,6 +16,14 @@
                         <u>Orden</u><br>
                         ID<br>
                         Estado<br>
+                        @if($id->shippingcost==0)
+                        Total
+                        @endif
+                        @if($id->shippingcost!=0)
+                        SubTotal<br>
+                        Costo Envio<br>
+                        Total<br>
+                        @endif
                         
                         <br>
                         
@@ -45,6 +53,14 @@
                      @if($id->status=='failure')
                         :<span class="status text-success ml-auto" style="color:red;">Cancelada</span> 
                      @endif<br>
+                     @if($id->shippingcost==0)
+                        ${{$id->total}}
+                     @endif
+                     @if($id->shippingcost!=0)
+                        :${{$id->total}}<br>
+                        :${{$id->shippingcost}}<br>
+                        :${{$id->total+$id->shippingcost}}
+                    @endif
 
                         <br><br>
 
@@ -71,14 +87,11 @@
                         Ciudad <br>
                         Domicilio <br>
                         Código Postal <br>
-                        
                     </div>
                     <div class="col-7">
                         : {{ $id->city }} <br>
                         : {{ $id->address }} <br>
                         : {{ $id->zipcode }} <br>
-                        
-                        
                     </div>
                 </div>
             </div>

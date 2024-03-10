@@ -1,0 +1,104 @@
+El método retorna el costo del envío y los tiempos de entrega.
+URL
+
+http://webservice.oca.com.ar/ePak_tracking/Oep_TrackEPak.asmx/Tarifar_Envio_Corpo
+rativo
+
+Métod+
+
+http://webservice.oca.com.ar/ePak_tracking_TEST/Oep_TrackEPak.asmx/Tarifar_Envio_Corpo
+rativo?PesoTotal=0.5&VolumenTotal=0.40&CodigoPostalOrigen=1722&CodigoPostalDestino=5016&CantidadPaquetes=1&ValorDeclarado=5000&CUIT=30-53625919-4&Operativa=64665
+
+
+
+<DataSet xmlns="#Oca_e_Pak">
+<xs:schema xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="NewDataSet">
+<xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="">
+<xs:complexType>
+<xs:choice minOccurs="0" maxOccurs="unbounded">
+<xs:element name="Table">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Tarifador" type="xs:int" minOccurs="0"/>
+<xs:element name="Precio" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idTiposervicio" type="xs:int" minOccurs="0"/>
+<xs:element name="Ambito" type="xs:string" minOccurs="0"/>
+<xs:element name="PlazoEntrega" type="xs:int" minOccurs="0"/>
+<xs:element name="Adicional" type="xs:decimal" minOccurs="0"/>
+<xs:element name="Total" type="xs:decimal" minOccurs="0"/>
+<xs:element name="XML" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+<diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+<NewDataSet xmlns="">
+<Table diffgr:id="Table1" msdata:rowOrder="0">
+<Tarifador>15</Tarifador>
+<Precio>1146.0700</Precio>
+<idTiposervicio>3</idTiposervicio>
+<Ambito>Nacional 1</Ambito>
+<PlazoEntrega>1</PlazoEntrega>
+<Adicional>0.0000</Adicional>
+<Total>1146.0700</Total>
+<XML><row Tarifador="15" Precio="1146.0700"/></XML>
+</Table>
+</NewDataSet>
+</diffgr:diffgram>
+</DataSet>
+
+
+Parámetros
+• PesoTotal
+▪ Descripción: Peso Total del envío expresado en kilogramos
+▪ Tipo: DECIMAL
+▪ Opcional: No
+▪ Ejemplo: 0.5
+• VolumenTotal
+▪ Descripción: Volumen Total del envío expresado en metros cúbicos
+▪ Tipo: DECIMAL
+▪ Opcional: No
+▪ Ejemplo: 0.05
+• CodigoPostalOrigen
+▪ Descripción: Código Postal de origen
+▪ Tipo: INT
+▪ Opcional: NO
+• CodigoPostalDestino
+▪ Descripción: Código Postal de destino
+▪ Tipo: INT
+▪ Opcional: NO
+• CantidadPaquetes
+▪ Descripción: Cantidad de Paquetes que componen el envío
+▪ Tipo: INT
+▪ Opcional: NO
+• ValorDeclarado
+▪ Descripción: Valor monetario del envío
+▪ Tipo: INT
+▪ Opcional: NO
+▪ Ejemplo: 150
+
+• CUIT
+▪ Descripción: CUIT del cliente [con guiones]
+▪ Tipo: STRING
+▪ Opcional: NO
+▪ Ejemplo: 32-25445889-2
+• Operativa
+▪ Descripción: Nro. de Operativa del envío
+▪ Tipo: INT
+▪ Opcional: NO
+
+
+
+
+Puerta a Puerta: 64665
+• Puerta a Sucursal: 62342
+• Sucursal a Puerta: 94584
+• Sucursal a Sucursal: 78254
+
+CLAVE
+123456
+NRO. DE CUENTA
+111757/001
