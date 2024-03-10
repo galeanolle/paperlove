@@ -26,6 +26,7 @@
                         @endif
                         
                         <br>
+                        <br>
                         
                         <u>Usuario</u><br>
                         ID<br>
@@ -33,8 +34,13 @@
                         E-mail <br>
                         Telefono <br>
                         <br>
+                        @if($id->payment_type==1)
                         <u>MercadoPago</u><br>
                         ID <br>
+                        @else
+                        <u>Efectivo (Paga en local)</u><br>
+                        <br>
+                        @endif
                         
         
                     </div>
@@ -54,15 +60,15 @@
                         :<span class="status text-success ml-auto" style="color:red;">Cancelada</span> 
                      @endif<br>
                      @if($id->shippingcost==0)
-                        ${{$id->total}}
+                        : ${{$id->total}}
                      @endif
                      @if($id->shippingcost!=0)
-                        :${{$id->total}}<br>
-                        :${{$id->shippingcost}}<br>
-                        :${{$id->total+$id->shippingcost}}
+                        : ${{$id->total}}<br>
+                        : ${{$id->shippingcost}}<br>
+                        : ${{$id->total+$id->shippingcost}}<br>                        
                     @endif
 
-                        <br><br>
+                        <br><br><br>
 
                         : {{ $id->user_id }} <br>
                         : {{ $id->name }} <br>
@@ -70,8 +76,19 @@
                         : {{ $id->phonenumber }} <br>
                         
                         <br><br>
-                        
-                        : 1 {{ $id->payment_id }} <br>
+                        @if($id->payment_type==1)
+                        : {{ $id->payment_id }} <br>
+                        @else
+                            @if($id->status=='created')
+               
+
+                           <a href="#" data-url="{{ route('admin.order.complete',['id'=>$id->id]) }}" data-title="Confirmar pago"  data-content="Confirma el pago en efectivo en el local?" class="btn btn-danger w-100 m-1 confirm" style="color:white;"><i class="fa fa-trash"></i> Confirmar pago</a>
+
+                            @endif
+                            @if($id->status=='success')
+                               Pagado en el local
+                            @endif
+                        @endif
                     </div>
                 </div>
                 

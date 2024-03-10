@@ -26,6 +26,7 @@
                         <div class="col-12 d-flex">
                             <div class="id" style="width:100px">ID</div>
                             <div class="id" style="width:220px">Fecha</div>
+                            <div class="id" style="width:220px">Medio de pago</div>
                             <div class="name" style="width:200px">Nombre</div>
                             <div class="name" style="width:200px">Subtotal</div>
                             <div class="name" style="width:200px">Envio</div>
@@ -40,6 +41,12 @@
                         <div class="col-12 d-flex">
                             <div class="id" style="width:100px">{{ $order->order_id }}</div>
                             <div class="id" style="width:220px">{{ $order->order_created_at }}</div>
+                            @if($order->payment_type==1)
+                            <div class="id" style="width:220px">MercadoPago</div>
+                            @else
+                            <div class="id" style="width:220px">Efectivo</div>
+                            @endif
+
                             <div class="name" style="width:200px">{{ $order->name }}</div>
                             <div class="name" style="width:200px">${{ $order->total }}</div>
                             <div class="name" style="width:200px">${{ $order->shippingcost }}</div>

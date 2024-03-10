@@ -818,7 +818,34 @@ Showroom <span class="m-left-quarter">Migueletes 2380, Belgrano, CABA, Buenos Ai
 <strong class="shipping-method-price text-primary">
 
 <label class="md_radio">
-  <input name="form1" type="radio" checked />
+  <input name="paymenttype" class="paymenttype" id="paymenttype_1" value="1" type="radio" checked />
+  <span class="md_radio__button"></span>
+ 
+</label>
+
+</strong>
+</div>
+</div>
+</li>
+</ul> </div>
+
+
+<div id="product-shipping-container" class="js-product-shipping-container row-fluid" data-shipping-url="/envio/">
+
+<ul class="js-store-branches-container box-container p-none list-unstyled list-readonly">
+<li class="list-item" data-store="branch-item-branch_144277">
+<div class="row-fluid ">
+<div class="span9 col-xs-9-custom pull-left pull-left-xs"><h6>En efectivo (retiro en el local)
+</h6>
+
+<p class="shipping-method-name"><span class="m-left-quarter"></span>
+</p>
+</div>
+<div class="span3 col-xs-3-custom pull-right-xs h6 text-right">
+<strong class="shipping-method-price text-primary">
+
+<label class="md_radio">
+  <input name="paymenttype" class="paymenttype"  id="paymenttype_2" value="2" type="radio"  />
   <span class="md_radio__button"></span>
  
 </label>
@@ -2347,11 +2374,29 @@ $( "#zipcode" ).on( "keyup", function() {
         */
 
 
+
+    $('.paymenttype').change(function(){
+        if($(this).val()==2){
+            $('.costo-envio-bloque').hide();
+            $('.total-a-pagar').html('$'+parseFloat(globalTotalPrice).toFixed(2));
+            $('#tipo_entrega_1').prop('checked',true);
+        }else{
+
+            if(globalTotalEnvio>0){
+                $('.costo-envio-bloque').show();
+                $('.total-a-pagar').html('$'+parseFloat(globalTotalPrice+globalTotalEnvio).toFixed(2));
+                $('#tipo_entrega_2').prop('checked',true);
+            }
+
+        }
+    });
+
     $('.tipo_entrega').change(function(){
         if($(this).val()==1){
             $('.costo-envio-bloque').hide();
             $('.total-a-pagar').html('$'+parseFloat(globalTotalPrice).toFixed(2));
         }else{
+            $('#paymenttype_1').prop('checked',true);
             $('.costo-envio-bloque').show();
             $('.total-a-pagar').html('$'+parseFloat(globalTotalPrice+globalTotalEnvio).toFixed(2));
         }
@@ -2523,7 +2568,7 @@ function calcularEnvio(){
                 $("#tipo_entrega_2").prop('checked', true);
                 $('.costo-envio-informado').html('$'+price);
                 $('.costo-envio-bloque').show();
-
+                $('#paymenttype_1').prop('checked',true);
 
             }else{
                 alert('El costo de envío no ha podido ser calculado, verifique su código postal ingresado.');

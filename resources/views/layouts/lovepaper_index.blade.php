@@ -706,6 +706,7 @@ Ver carrito
 </div>
 <div class="row-fluid m-bottom-half facebook-widget-row visible-when-content-ready text-center-xs">
 </div>
+
 <div id="news-popup" class="modal hide fade news-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <div class="modal-body" style="display: none;">
 <button type="button" class="news btn-floating m-top-quarter m-right-quarter" data-dismiss="modal" aria-hidden="true"><svg class="svg-inline--fa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z" /></svg></button>
 <div class="row-fluid">
@@ -744,6 +745,9 @@ Ver carrito
 </div>
 </div>
 </div>
+
+
+
 <script type="text/javascript">
 (function() {
     var referrer = (window.decodeURI) ? window.decodeURI(document.referrer) : document.referrer;

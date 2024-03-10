@@ -62,6 +62,13 @@ class AdminController extends Controller
         return view('admin.index',compact('latest','totaluser','totalorder','totalgross','reminder'));
     }
 
+    public function orderComplete($id){
+        $order = Order::findOrFail($id);
+        $order->status = 'success';
+        $order->save();
+        return redirect()->route('admin.showorder',['id'=>$id])->with('success','La orden a sido completada!');
+    }
+
     public function order(Request $request)
     {
         $search = $request->get('search');
@@ -72,6 +79,7 @@ class AdminController extends Controller
             'users.name',
             'orders.total',
             'orders.shippingcost',
+            'orders.payment_type',
             'orders.status'
         )
         ->orderBy('orders.created_at','DESC')
@@ -80,7 +88,7 @@ class AdminController extends Controller
         ->OrWhere('orders.address','LIKE','%'.$search.'%')
         ->OrWhere('users.name','LIKE','%'.$search.'%')
         ->OrWhere('users.email','LIKE','%'.$search.'%')
-        ->paginate(2)->appends(request()->query());
+        ->paginate(15)->appends(request()->query());
         
         return view('admin.order',compact('orders','search'));
     }
