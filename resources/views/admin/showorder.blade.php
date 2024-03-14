@@ -54,10 +54,10 @@
                         : <span class="text-success">Pagada</span> 
                      @endif
                      @if($id->status=='pending')
-                        :<span class="status text-success ml-auto" style="color:yellow;">Pendiente</span> 
+                        : <span class="status text-success ml-auto" style="color:yellow;">Pendiente</span> 
                      @endif
                      @if($id->status=='failure')
-                        :<span class="status text-success ml-auto" style="color:red;">Cancelada</span> 
+                        : <span class="status text-success ml-auto" style="color:red;">Cancelada</span> 
                      @endif<br>
                      @if($id->shippingcost==0)
                         : ${{$id->total}}

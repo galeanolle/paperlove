@@ -22,6 +22,20 @@ class CheckoutController extends Controller
 {
     public function notification(Request $request){
 
+        /*
+        if($request->('topic')=='payment'){
+            if($request->('id')){
+                $payment_id = $request->('id');
+                $url = 'https://api.mercadopago.com/v1/payments/'.$payment_id;
+                $data = Http::get($url);
+            }
+        }
+
+
+        topic=payment&id=123456789
+
+        */
+
         // obtener el payment_id
         // obtener estado del payment_id , obtener el external (order id) y actualizar el order
         echo '';
