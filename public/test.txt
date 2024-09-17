@@ -1,0 +1,55 @@
+http://webservice.oca.com.ar/ePak_tracking_TEST/Oep_TrackEPak.asmx/Tarifar_Envio_Corporativo?PesoTotal=0.2&VolumenTotal=0.50&CodigoPostalOrigen=1722&CodigoPostalDestino=1414&CantidadPaquetes=1&ValorDeclarado=1500&CUIT=20-33501701-4&Operativa=64665
+
+
+
+Usr
+Psw
+
+190669/000 corrieri Gabriel Ignacio
+
+jbWPEsnX.5qczY6
+gabrielcorrieri1@gmail.com
+
+
+
+http://webservice.oca.com.ar/ePak_tracking/Oep_TrackEPak.asmx/Tarifar_Envio_Corporativo?PesoTotal=0.2&VolumenTotal=0.50&CodigoPostalOrigen=1722&CodigoPostalDestino=1414&CantidadPaquetes=1&ValorDeclarado=1500&CUIT=20-39760789-6&Operativa=64665
+
+
+IyhFsr3Fezpj~en8bS~RFWvZvs6vCkWI~juIITcI95SUXlDTEMx5GtTxbdhvK3iDiuFiUgQMLaBjBuhMCbvFhEmZXRGKPofJpkXQaYQezs9QGv2Ac80wPr49yh1yFj0m
+
+
+
+<IdUsuario>1012863</IdUsuario>
+<Nombre>Gabriel</Nombre>
+<Apellido>Corrieri</Apellido>
+<NombreLogin>Gabriel</NombreLogin>
+<ApellidoLogin>Corrieri</ApellidoLogin>
+<Password>jbWPEsnX.5qczY6</Password>
+<Calle>Migueletes</Calle>
+<Numero>2380</Numero>
+<Piso/>
+<Depto/>
+<IdCodPostal>429</IdCodPostal>
+<Localidad>CAPITAL FEDERAL - BUENOS AIRES</Localidad>
+<Empresa>Love Paper</Empresa>
+<Telefono/>
+<Contacto>Gabriel</Contacto>
+<Fax/>
+<eCorreo1>gabrielcorrieri1@gmail.com</eCorreo1>
+<eCorreo2>gabrielcorrieri1@gmail.com</eCorreo2>
+<InfoMail>true</InfoMail>
+<Sexo xml:space="preserve"> </Sexo>
+<CUITEmpresa>20-39760789-6</CUITEmpresa>
+<Ocupacion/>
+<FechaAlta>2024-03-08T00:00:00-03:00</FechaAlta>
+<Habilitado>true</Habilitado>
+<PreguntaClave>No se usa</PreguntaClave>
+<RespClave>No se usa</RespClave>
+<PregComoseEntero>0</PregComoseEntero>
+<Preg24hs>0</Preg24hs>
+<PregDia>0</PregDia>
+<EsCorporativo>true</EsCorporativo>
+<OepWeb>false</OepWeb>
+<ePak>true</ePak>
+<TelefonoCelular>1131186342</TelefonoCelular>
+<nrocuenta>190669/000</nrocuenta>

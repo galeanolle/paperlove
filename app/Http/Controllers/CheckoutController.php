@@ -47,7 +47,11 @@ class CheckoutController extends Controller
 
 
         $status = $request->input('status');
-        $payment_id = $request->input('payment_id');
+	if($status=='approved') 
+		$status = 'success';
+	else
+		$status = 'pending';
+    	$payment_id = $request->input('payment_id');
     
         $external_reference = $request->input('external_reference');
 
