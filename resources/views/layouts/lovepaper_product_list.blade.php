@@ -594,7 +594,7 @@ Ver carrito
 @endif
 
 
-<label><input type="checkbox" class="filter-checkbox" id="variant_{{ $variantGroup->variant_id }}" data-id="{{ $variantGroup->variant_id }}" />   {{ $variantGroup->variant_name }} ({{$variantGroup->total_stock}})</label>
+<label><input type="checkbox" class="filter-checkbox" id="variant_{{ $variantGroup->variant_id }}" data-id="{{ $variantGroup->variant_id }}" />   {{ $variantGroup->variant_name }} <!--({{$variantGroup->total_stock}})--></label>
 
 
 @endforeach
@@ -669,7 +669,7 @@ ${{ $product->product_price }}
 </span>
 </div>
 </div>
-<div class="product-grid-labels">
+<div class="product-grid-labels" style="display: none;">
     @if($product->total_stock==0)
     <div class="js-stock-label item-label product-label label-light font-small" style="display:;">SIN STOCK</div>
     @endif
@@ -772,7 +772,7 @@ ${{ $product->product_price }}
 @endif
 
 
-<label><input type="checkbox" class="filter-checkbox-mobile" id="variant_mobile_{{ $variantGroup->variant_id }}" data-id="{{ $variantGroup->variant_id }}" />   {{ $variantGroup->variant_name }} ({{$variantGroup->total_stock}})</label>
+<label><input type="checkbox" class="filter-checkbox-mobile" id="variant_mobile_{{ $variantGroup->variant_id }}" data-id="{{ $variantGroup->variant_id }}" />   {{ $variantGroup->variant_name }} <!--({{$variantGroup->total_stock}})--></label>
 
 
 @endforeach

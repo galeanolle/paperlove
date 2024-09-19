@@ -643,7 +643,7 @@ Ver medios de pago
 <div class="js-product-variants-group ">
 <select class="variant-select" name="variant" id="variant-select">
 @foreach($variants as $variant)
-    <option value="{{$variant->id}}" selected="selected" data-quantity="{{$variant->quantity}}">{{$variant->name}} ({{$variant->quantity}})</option>
+    <option value="{{$variant->id}}" selected="selected" data-quantity="{{$variant->quantity}}">{{$variant->name}} <!--({{$variant->quantity}})--></option>
 @endforeach
 </select>
 </div>
@@ -1112,7 +1112,7 @@ $5.799,00
 <div class="product-grid-labels">
 
 @if($totalquantity==0)
-<div class="js-stock-label item-label product-label label-light font-small" style="display:;">Sin stock</div>
+<div class="js-stock-label item-label product-label label-light font-small" style="display:none;">Sin stock</div>
 @endif
 
 
@@ -1189,7 +1189,7 @@ $5.799,00
 </div>
 <div class="product-grid-labels">
     @if($totalquantity==0)
-<div class="js-stock-label item-label product-label label-light font-small" style="display:;">Sin stock</div>
+<div class="js-stock-label item-label product-label label-light font-small" style="display:none;">Sin stock</div>
 @endif
 </div>
 <span class="hidden" data-store="stock-product-91185014-infinite"></span>
@@ -1263,7 +1263,7 @@ $5.799,00
 </div>
 <div class="product-grid-labels">
     @if($totalquantity==0)
-<div class="js-stock-label item-label product-label label-light font-small" style="display:;">Sin stock</div>
+<div class="js-stock-label item-label product-label label-light font-small" style="display:none;">Sin stock</div>
 @endif
 
 </div>
@@ -1338,7 +1338,7 @@ $2.999,00
 </div>
 <div class="product-grid-labels">
 @if($totalquantity==0)
-<div class="js-stock-label item-label product-label label-light font-small" style="display:;">Sin stock</div>
+<div class="js-stock-label item-label product-label label-light font-small" style="display:none;">Sin stock</div>
 @endif
 </div>
 <span class="hidden" data-store="stock-product-91181634-infinite"></span>
