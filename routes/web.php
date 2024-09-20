@@ -97,8 +97,8 @@ Route::get('/cart/add','CartController@add')->name('cart.add');
 Route::get('/cart/add/item','CartController@addItem')->name('cart.addItem');
 Route::get('/cart/remove','CartController@remove')->name('cart.remove');
 
-Route::get('/checkout','CheckoutController@index')->name('checkout.index')->middleware('auth');
-Route::post('/checkout','CheckoutController@checkout')->name('checkout')->middleware('auth');
+Route::get('/checkout','CheckoutController@index')->name('checkout.index'); //->middleware('auth');
+Route::post('/checkout','CheckoutController@checkout')->name('checkout');//->middleware('auth');
 Route::any('/checkout/payment','CheckoutController@payment')->name('checkout.payment');
 Route::any('/checkout/notification','CheckoutController@notification')->name('checkout.notification');
 Route::any('/checkout/envio','CheckoutController@envio')->name('checkout.envio');

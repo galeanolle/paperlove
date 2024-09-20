@@ -965,7 +965,7 @@ de
 <a href="/productos/" class="btn btn-link p-none">ver otros acá</a>
 </div>
 <div class="m-top-half m-bottom-half text-left pull-left hidden-phone">
-<a href="/productos" class="js-toggle-cart js-fullscreen-modal-close btn-link p-none-left p-right-none">Ver más productos</a>
+<a href="/productos" class="btn-link p-none-left p-right-none">Ver más productos</a>
 </div>
 <div class="js-ajax-cart-submit pull-right full-width-xs" id="ajax-cart-submit-div">
 <input class="pull-right full-width-xs btn btn-primary" type="button" name="go_to_checkout" data-component="cart.checkout-button" value="Iniciar Compra" onclick="document.location.href='/checkout'" />

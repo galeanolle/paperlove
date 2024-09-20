@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/css/style.2.css">
     <link rel="stylesheet" href="/css/style-51936b8c4b1f70b897c6d3b421aa90f0.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" type="text/css" href="/css/custom-e9a36d1713f3ffbc90f5e70bbc8ecb26.css" media="all" />
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" async="true"></script>
+    <script type="text/javascript" src="/js/jquery.min.js" async="true"></script>
     <link href="/images/favicon.png" rel="icon" type="image/x-icon" />
     <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon" />
     <link rel="canonical" href="https://lovepaper.com.ar/" />
@@ -516,7 +516,7 @@ Ver carrito
 <input type="text" name="name" id="name" value class="form-control " placeholder="ej.: María Perez" />
 -->
 
-<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" placeholder="ej.: María Perez" disabled>
+<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="" required autocomplete="name" placeholder="ej.: María Perez">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -535,7 +535,7 @@ Ver carrito
 -->
 
 
- <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" placeholder="ej.: tunombre@email.com" disabled>
+ <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="" required autocomplete="email" placeholder="ej.: tunombre@email.com">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -1123,7 +1123,7 @@ de
 <a href="/productos/" class="btn btn-link p-none">ver otros acá</a>
 </div>
 <div class="m-top-half m-bottom-half text-left pull-left hidden-phone">
-<a href="#" class="js-toggle-cart js-fullscreen-modal-close btn-link p-none-left p-right-none">Ver más productos</a>
+<a href="/productos" class="btn-link p-none-left p-right-none">Ver más productos</a>
 </div>
 <div class="js-ajax-cart-submit pull-right full-width-xs" id="ajax-cart-submit-div">
 
@@ -2380,8 +2380,9 @@ $( "#zipcode" ).on( "keyup", function() {
         };
         */
 
+window.onload = function(){
 
-
+    
     $('.paymenttype').change(function(){
         if($(this).val()==2){
             $('.costo-envio-bloque').hide();
@@ -2419,6 +2420,13 @@ $( "#zipcode" ).on( "keyup", function() {
     var globalTotalPrice = 0;
     var globalTotalQuantity = 0;
     var globalTotalEnvio = 0;
+
+    $('.calcular-envio').click(function(){
+    calcularEnvio();
+});
+
+}
+
 
     function dibujarCarrito(){
 
@@ -2534,9 +2542,7 @@ function minQuantity(id){
 }
 
 
-$('.calcular-envio').click(function(){
-    calcularEnvio();
-});
+
 
 function calcularEnvio(){
 

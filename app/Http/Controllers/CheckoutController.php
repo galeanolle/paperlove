@@ -8,10 +8,12 @@ use Auth;
 use App\Cart;
 use App\Order;
 use App\Stock;
+use App\User;
 use DB;
 use Illuminate\Support\Facades\Redirect;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Hash;
 
 use MercadoPago;
 use MercadoPago\MercadoPagoConfig;
@@ -78,13 +80,15 @@ class CheckoutController extends Controller
         $total = $cart->totalPrice;
         $quantity = $cart->totalQuantity;
 
-        $user = Auth::user();
-        return view('checkout.index',compact('user','total','quantity'));
+        //$user = Auth::user();
+        return view('checkout.index',compact(/*'user',*/'total','quantity'));
     }
 
     public function checkout(Request $request)
     {
         $this->validate(request(), [
+            'email' => 'required|string|email|max:255|unique:users',
+            'name' => 'required|string|max:255',
             'phonenumber' => 'required|string',
             'city' => 'required|string',
             'address' => 'required',
@@ -120,8 +124,12 @@ class CheckoutController extends Controller
             $order->shippingcost = $request->get('envio');
         }
 
-        Auth::user()->orders()->save($order);
-
+        //Auth::user()->orders()->save($order);
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('email')),
+        ]);
 
         // Si paga con mercado_pago
         $url = 'https://lovepaper.com.ar';
