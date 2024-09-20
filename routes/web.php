@@ -22,6 +22,7 @@ Route::patch('/dashboard', 'AdminController@updatereminder')->name('admin.remind
 Route::get('/order', 'AdminController@order')->name('admin.order')->middleware(['auth','admin']);
 Route::get('/order/complete/{id}', 'AdminController@orderComplete')->name('admin.order.complete')->middleware(['auth','admin']);
 Route::get('/order/{id}', 'AdminController@show_order')->name('admin.showorder')->middleware(['auth','admin']);
+Route::get('/order/edit/{id}/{tracking_id}', 'AdminController@edit_order_tracking_id')->name('admin.order.edit.tracking_id')->middleware(['auth','admin']);
 
 Route::get('/user', 'AdminController@user')->name('admin.user')->middleware(['auth','admin']);
 

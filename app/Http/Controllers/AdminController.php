@@ -75,6 +75,7 @@ class AdminController extends Controller
         $orders=Order::leftjoin('users','orders.user_id','=','users.id')
         ->select(
             'orders.id as order_id',
+            'orders.tracking_id',
             'orders.created_at as order_created_at',
             'users.name',
             'orders.total',
@@ -86,6 +87,7 @@ class AdminController extends Controller
         ->where('orders.id','LIKE','%'.$search.'%')
         ->OrWhere('orders.total','LIKE','%'.$search.'%')
         ->OrWhere('orders.address','LIKE','%'.$search.'%')
+        ->OrWhere('orders.tracking_id','LIKE','%'.$search.'%')
         ->OrWhere('users.name','LIKE','%'.$search.'%')
         ->OrWhere('users.email','LIKE','%'.$search.'%')
         ->paginate(15)->appends(request()->query());
@@ -108,7 +110,32 @@ class AdminController extends Controller
             $order->cart = unserialize($order->cart);
             return $order;
         });
-        return view('admin.showorder',compact('order','ids'));
+
+        $success = '';
+        return view('admin.showorder',compact('order','ids','success'));
+    }
+
+    public function edit_order_tracking_id($id, $tracking_id){
+
+        $order =Order::find($id);
+        $order->tracking_id = $tracking_id;
+        $order->save();
+        
+        $ids =DB::table('orders')->leftjoin('users','orders.user_id','=','users.id')
+        ->select(
+            'orders.*',
+            'users.name',
+            'users.email'
+        )
+        ->where('orders.id',$id)->get();
+
+        $order =DB::table('orders')->where('id',$id)->get();
+        $order->transform(function($order,$key){
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
+        
+        return view('admin.showorder',compact('order','ids'))->with('success','Se ha actualizado el Tracking ID del envío');
     }
 
     public function user()

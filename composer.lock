@@ -6655,16 +6655,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.39",
+            "version": "8.5.40",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "172ba97bcf97ae6ef86ca256adf77aece8a143fe"
+                "reference": "48ed828b72c35b38cdddcd9059339734cb06b3a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/172ba97bcf97ae6ef86ca256adf77aece8a143fe",
-                "reference": "172ba97bcf97ae6ef86ca256adf77aece8a143fe",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/48ed828b72c35b38cdddcd9059339734cb06b3a7",
+                "reference": "48ed828b72c35b38cdddcd9059339734cb06b3a7",
                 "shasum": ""
             },
             "require": {
@@ -6733,7 +6733,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/8.5.39"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/8.5.40"
             },
             "funding": [
                 {
@@ -6749,7 +6749,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-10T11:43:00+00:00"
+            "time": "2024-09-19T10:47:04+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

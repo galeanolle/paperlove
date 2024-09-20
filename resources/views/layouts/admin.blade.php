@@ -143,6 +143,16 @@ $('#savestock').click(function(){
 });
 
 
+$('#save_tracking_id').click(function(){
+    var tracking_id =  $('#tracking_id').val();
+    var url = $(this).attr('data-url').replace('tracking_id',tracking_id);
+    document.location.href=url;
+});
+
+
+
+
+
 
 $('.confirm').click(function(){
     var url = $(this).attr('data-url');

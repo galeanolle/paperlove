@@ -2,7 +2,20 @@
 
 @section ('content')
 
+
+
 <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+
+    @if($success!='')
+    <div class="row">
+      <div class="col-12">
+        <div id="charge-message" class="alert alert-success">
+          {{ $success }}
+        </div>
+      </div>
+    </div>
+    @endif
+
     <div class="card">
         <div class="card-header">
             <div class="row">
@@ -104,11 +117,24 @@
                         Ciudad <br>
                         Domicilio <br>
                         Código Postal <br>
+                        Tracking ID <br>
                     </div>
                     <div class="col-7">
                         : {{ $id->city }} <br>
                         : {{ $id->address }} <br>
                         : {{ $id->zipcode }} <br>
+                        : <input type="text" id="tracking_id" value="{{ $id->tracking_id }}" /><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                    </div>
+                    <div class="col-7">
+                        <input type="hidden" value="{{ $id->id }}" id="order_id" />
+                        <button type="button" class="btn btn-success" style="margin:10px;" 
+                        data-url="{{ route('admin.order.edit.tracking_id',['id'=>$id->id,'tracking_id'=>'tracking_id'])}}" id="save_tracking_id" >
+                            Guardar Tracking ID
+                        </button>
                     </div>
                 </div>
             </div>

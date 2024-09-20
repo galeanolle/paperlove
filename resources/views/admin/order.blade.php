@@ -13,7 +13,7 @@
               @csrf
                 <!-- Search form -->
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" name="search" placeholder="Buscar por ID, total, nombre, email o domicilio..." aria-label="Recipient's username" aria-describedby="basic-addon2" value="{{ $search }}">
+                  <input type="text" class="form-control" name="search" placeholder="Buscar por ID, Tracking ID, total, nombre, email o domicilio..." aria-label="Recipient's username" aria-describedby="basic-addon2" value="{{ $search }}">
                   <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button" onclick="event.preventDefault();
                                                 document.getElementById('search-form').submit();"><i class="fa fa-search"></i></button>
@@ -28,8 +28,9 @@
                             <div class="id" style="width:220px">Fecha</div>
                             <div class="id" style="width:220px">Medio de pago</div>
                             <div class="name" style="width:200px">Nombre</div>
-                            <div class="name" style="width:200px">Subtotal</div>
+                            <!--<div class="name" style="width:200px">Subtotal</div>-->
                             <div class="name" style="width:200px">Envio</div>
+                            <div class="name" style="width:200px">Tracking ID</div>
                             <div class="name" style="width:200px">Total</div>
                             <div class="status  ml-auto">Estado</div> 
                         </div>
@@ -48,9 +49,12 @@
                             @endif
 
                             <div class="name" style="width:200px">{{ $order->name }}</div>
-                            <div class="name" style="width:200px">${{ $order->total }}</div>
+                            <!--<div class="name" style="width:200px">${{ $order->total }}</div>-->
                             <div class="name" style="width:200px">${{ $order->shippingcost }}</div>
+                              <div class="name" style="width:200px">{{ $order->tracking_id }}</div>
                             <div class="name" style="width:200px">${{ $order->total + $order->shippingcost }}</div>
+
+
                              @if($order->status=='created')
                                 <div class="status text-success ml-auto" style="color:black;">Iniciada</div> 
                              @endif
