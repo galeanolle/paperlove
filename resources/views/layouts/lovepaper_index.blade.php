@@ -266,7 +266,7 @@ CONTACTO</a>
 <div class="container visible-phone">
 <div class="js-search-container">
 <div class="js-mobile-search-row mobile-nav-search-row">
-<form action="/search/" method="get" class="js-search-form">
+<form action="/productos/" method="get" class="js-search-form">
 <div class="input-prepend mobile-search-input-container">
 <span class="js-search-back-btn js-toggle-mobile-search mobile-search-input-back">
 <svg class="svg-inline--fa fa-lg svg-icon-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z" /></svg> </span>
@@ -301,8 +301,8 @@ CONTACTO</a>
 <span class="js-quick-login-badge badge badge-primary badge-small badge-top m-right-half" style="display: none;"></span>
 </div>
 </div>
-<div class="searchbox p-relative hidden-phone" style="display:none;">
-<form class="js-search-container js-search-form" action="/search/" method="get">
+<div class="searchbox p-relative hidden-phone" style="display:;">
+<form class="js-search-container js-search-form" action="/productos/" method="get">
 <input class="js-search-input header-input form-control form-control-xs" autocomplete="off" type="search" name="q" placeholder="Buscar" />
 <button type="submit" class="btn btn-desktop-search" value="Buscar" aria-label="Buscar">
 <svg class="svg-inline--fa fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z" /></svg> </button>
@@ -356,7 +356,7 @@ CONTACTO</a>
 </div>
 <div class="mobile-cart col-xs-3-custom text-right">
 <div class="visible-phone">
-<div class="js-toggle-mobile-search js-toggle-mobile-search-open mobile-search-btn text-center d-inline-block h5" style="display: none;">
+<div class="js-toggle-mobile-search js-toggle-mobile-search-open mobile-search-btn text-center d-inline-block h5" style="display:;">
 <div class="svg-icon-text">
 <svg class="svg-inline--fa fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z" /></svg> </div>
 </div>

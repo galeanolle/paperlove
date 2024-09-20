@@ -24,8 +24,32 @@ class ProductController extends Controller
         $subcategoryName = null;
         $order = request('order');
         $variants = request('variants');
+        $q = request('q');
         if($variants!=''){
             $variants = explode(",",$variants);
+        }
+
+        
+        if($q!=''){
+
+            $variantsList = Variant::select('id')->where('name','like','%'.$q.'%')->get();
+
+            if(is_array($variants)){
+                foreach($variantsList[0] as $variant) {
+                    array_push( $variants, $variant->id);
+                }
+            }else{
+
+                if($variantsList->count()>0){
+                    $variantsList = $variantsList->toarray();
+                    $variants = Array();
+                    foreach ($variantsList[0] as $key => $value) {
+                        array_push( $variants, $value);
+                    }
+                }
+                
+            }
+
         }
 
         // Todos los productos
@@ -59,6 +83,9 @@ class ProductController extends Controller
                     $products = $products->orderBy('stocks.quantity','asc');
             }
 
+            if($q!=''&&!is_array($variants)){
+                $products = $products->where('products.name','like','%'.$q.'%'); 
+            }
 
             $products = $products->paginate(30)->appends(request()->query());
 
@@ -115,9 +142,11 @@ class ProductController extends Controller
                         $products = $products->orderBy('stocks.quantity','asc');
                 }
 
+                if($q!=''&&!is_array($variants)){
+                    $products = $products->where('products.name','like','%'.$q.'%'); 
+                }
+
                 $products = $products->paginate(30)->appends(request()->query());
-
-
 
                 $categories = Category::where('id_parent','=',$existCategory->first()->id)->get();
                 $categoryName = $existCategory->first()->name;
@@ -181,6 +210,10 @@ class ProductController extends Controller
                             $products = $products->orderBy('products.id','asc');
                         if($order=='best-selling')
                             $products = $products->orderBy('stocks.quantity','asc');
+                    }
+
+                    if($q!=''&&!is_array($variants)){
+                        $products = $products->where('products.name','like','%'.$q.'%'); 
                     }
 
                     $products = $products->paginate(30)->appends(request()->query());
