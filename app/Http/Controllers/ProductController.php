@@ -58,6 +58,7 @@ class ProductController extends Controller
                     'products.id as product_id',
                     'products.name as product_name',
                     'products.price as product_price',
+                    'products.percent as product_percent',
                     'products.image as product_image',
                     'products.slug as product_slug'
                 )->selectRaw("IFNULL(SUM(stocks.quantity),0) as total_stock")->groupBy('products.id','products.name','products.price','products.image','products.slug');
@@ -116,6 +117,7 @@ class ProductController extends Controller
                     'products.id as product_id',
                     'products.name as product_name',
                     'products.price as product_price',
+                    'products.percent as product_percent',
                     'products.image as product_image',
                     'products.slug as product_slug'
                 )->selectRaw("IFNULL(SUM(stocks.quantity),0) as total_stock")->groupBy('products.id','products.name','products.price','products.image','products.slug');
@@ -186,6 +188,7 @@ class ProductController extends Controller
                     'products.id as product_id',
                     'products.name as product_name',
                     'products.price as product_price',
+                    'products.percent as product_percent',
                     'products.image as product_image',
                     'products.slug as product_slug'
                     )->selectRaw("IFNULL(SUM(stocks.quantity),0) as total_stock")->groupBy('products.id','products.name','products.price','products.image','products.slug');
@@ -366,6 +369,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->name=request('name');
         $product->price=request('price');
+        $product->percent=request('percent');
         $product->category_id=request('category_id');
         $product->image=$imagepath;
         $product->slug=Str::slug(request('name'));
@@ -399,6 +403,7 @@ class ProductController extends Controller
             
             $product->name=request('name');
             $product->price=request('price');
+            $product->percent=request('percent');
             $product->category_id=request('category_id');
             $product->image=$imagepath;
             $product->slug=Str::slug(request('name'));
@@ -409,6 +414,7 @@ class ProductController extends Controller
             $product = Product::findOrFail($id);
             $product->name=request('name');
             $product->price=request('price');
+            $product->percent=request('percent');
             $product->category_id=request('category_id');
             $product->slug=Str::slug(request('name'));
             $product->save();

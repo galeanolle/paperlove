@@ -666,11 +666,14 @@ Ver carrito
 {{ $product->product_name }}
 </a>
 <div class="item-price-container m-none-xs " data-store="product-item-price-65098911">
-<span class="price-compare" style="display:none;">
+@if($product->product_percent!=0)
+<span class="price-compare" style="display:;">
 <span class="js-compare-price-display item-price-compare p-none-left-xs p-right-quarter-xs">
-$0
+${{ (int)($product->product_price*100 / (100-$product->product_percent)) }}
 </span>
 </span>
+@endif
+
 <span class="js-price-display item-price h6">
 ${{ $product->product_price }}
 </span>

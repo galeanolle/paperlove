@@ -561,14 +561,20 @@ Ver carrito
 </div>
 <div class="price-holder pull-left-xs full-width" data-store="product-price-65098911">
 <div class="price product-price-container m-top-half text-left-xs m-bottom-xs m-bottom-half">
-<span class="price-compare" style="display: none;">
+
+@if($product->percent!=0)
+<span class="price-compare" style="display: ;">
 <span id="compare_price_display" class="js-compare-price-display price-compare h4 p-right-quarter">
-$0.000,00
+${{ (int)($product->price*100 / (100-$product->percent)) }}
 </span>
 </span>
+@endif
+
+
 <span class="price product-price js-price-display" id="price_display" data-product-price="579900">
 ${{$product->price}}
 </span>
+
 </div>
 </div>
 </div>
