@@ -87,7 +87,7 @@ class CheckoutController extends Controller
     public function checkout(Request $request)
     {
         $this->validate(request(), [
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'name' => 'required|string|max:255',
             'phonenumber' => 'required|string',
             'city' => 'required|string',
@@ -125,11 +125,20 @@ class CheckoutController extends Controller
         }
 
         //Auth::user()->orders()->save($order);
-        User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('email')),
-        ]);
+        $user = User::where('email','=',$request->input('email'))->get();
+       
+        if($user->count()==0){
+            $user = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('email')),
+            ]);
+            $order->user_id = $user->id;
+        }else{
+            $order->user_id = $user[0]->id;
+        }
+        $order->save();
+
 
         // Si paga con mercado_pago
         $url = 'https://lovepaper.com.ar';
