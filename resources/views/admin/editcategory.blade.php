@@ -62,6 +62,41 @@
                 </div>
             </div>
 
+            <div class="col-12">
+                <br>
+                <label for="price" class="" style="font-weight: bold;">Valores a aplicar en todos los productos de esta categoría</label>
+                <div class="form-group">
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="price" class="">Precio</label>
+                <div class="form-group">
+                    <div>
+                        <input id="price" type="number" placeholder="0.00" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}"  autocomplete="price" autofocus min="0" value="0" step="0.01" pattern="^\d+(?:\.\d{1,2})?$">
+                        @error('price')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="percent" class="">Porcentaje de descuento (0 a 100, 0 no muestra descuento).</label>
+                <div class="form-group">
+                    <div>
+                        <input id="percent" type="number" placeholder="0" class="form-control @error('percent') is-invalid @enderror" name="percent" value="{{ old('percent') }}"  autocomplete="percent" autofocus min="0" value="0" step="0.01" pattern="^\d+(?:\.\d{1,2})?$">
+                        @error('percent')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+
 
         </div>
         

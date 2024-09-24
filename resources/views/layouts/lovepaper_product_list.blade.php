@@ -590,21 +590,41 @@ Ver carrito
 
 <div class="filters-container">
 
-
+<div>
 <?php $groupName = ''; ?>
 @foreach($variantGroups as $variantGroup)
 
 @if($groupName!=$variantGroup->variant_group_name)
+    </div>
+    <div id="grupo_categoria_web_{{$variantGroup->variant_group_id}}">
     <br>
     <h6 class="m-bottom">{{ $variantGroup->variant_group_name }}</h6>
-    <?php $groupName = $variantGroup->variant_group_name; ?>
+    <?php $groupName = $variantGroup->variant_group_name; 
+    $totalVistaWeb = 5;
+    ?>
+@endif
+
+@if($totalVistaWeb>0)
+<label>
+@else
+<label class="hide_categoria_web" data-id="{{$variantGroup->variant_group_id}}">
+@endif
+
+<input type="checkbox" class="filter-checkbox" id="variant_{{ $variantGroup->variant_id }}" data-id="{{ $variantGroup->variant_id }}" />   {{ $variantGroup->variant_name }} <!--({{$variantGroup->total_stock}})--></label>
+
+<?php $totalVistaWeb--; ?>
+
+@if($totalVistaWeb==0)
+
+<button class="ver_categoria_web" data-id="{{$variantGroup->variant_group_id}}" data-action="show">Ver más</button>
 @endif
 
 
-<label><input type="checkbox" class="filter-checkbox" id="variant_{{ $variantGroup->variant_id }}" data-id="{{ $variantGroup->variant_id }}" />   {{ $variantGroup->variant_name }} <!--({{$variantGroup->total_stock}})--></label>
 
 
 @endforeach
+
+</div>
 </div>
 
 
@@ -772,20 +792,69 @@ ${{ $product->product_price }}
 <div class="filters-container" >
 
 
-<?php $groupName = ''; ?>
+<style>
+    .hide_categoria {
+        display: none;
+    }
+    .hide_categoria_web {
+        display: none;
+
+    }
+
+
+    .ver_categoria, .ver_categoria_web {
+        display: ;
+        background: none;
+    border: none;
+    color: blue;
+    text-decoration: underline;
+    font-weight: ;
+    padding: 15px;
+    padding-left: 0px;
+    }
+
+</style>
+
+<?php 
+$groupName = ''; ?>
+<div>
 @foreach($variantGroups as $variantGroup)
 
 @if($groupName!=$variantGroup->variant_group_name)
+    </div>
+    <div id="grupo_categoria_{{$variantGroup->variant_group_id}}">
     <br>
     <h6 class="m-bottom">{{ $variantGroup->variant_group_name }}</h6>
-    <?php $groupName = $variantGroup->variant_group_name; ?>
+    <?php $groupName = $variantGroup->variant_group_name; 
+    $totalVista = 5;
+    ?>
+@endif
+
+@if($totalVista>0)
+<label>
+@else
+<label class="hide_categoria" data-id="{{$variantGroup->variant_group_id}}">
 @endif
 
 
-<label><input type="checkbox" class="filter-checkbox-mobile" id="variant_mobile_{{ $variantGroup->variant_id }}" data-id="{{ $variantGroup->variant_id }}" />   {{ $variantGroup->variant_name }} <!--({{$variantGroup->total_stock}})--></label>
+<input type="checkbox" class="filter-checkbox-mobile" id="variant_mobile_{{ $variantGroup->variant_id }}" data-id="{{ $variantGroup->variant_id }}" />   {{ $variantGroup->variant_name }} <!--({{$variantGroup->total_stock}})-->
+
+</label>
+
+
+
+<?php $totalVista--; ?>
+
+@if($totalVista==0)
+
+<button class="ver_categoria" data-id="{{$variantGroup->variant_group_id}}" data-action="show">Ver más</button>
+@endif
 
 
 @endforeach
+
+    </div>
+
 </div>
 
 
@@ -1139,11 +1208,74 @@ window.urls = {
 }
 
 
-
 window.lazySizesConfig = window.lazySizesConfig || {};
 lazySizesConfig.hFac = 0.1;
 
+
 window.onload = function(){
+
+
+    $('.ver_categoria').each(function(i, obj) {
+        var id = $(obj).attr('data-id');
+        var element = $(obj).detach();
+        $('#grupo_categoria_'+id).append(element);
+              
+    });
+
+
+     $('.ver_categoria_web').each(function(i, obj) {
+        var id = $(obj).attr('data-id');
+        var element = $(obj).detach();
+        $('#grupo_categoria_web_'+id).append(element);
+              
+    });
+
+    $('.ver_categoria').click(function(){
+            var label =  $(this);
+            console.log(label.attr('data-id'));
+            var categorias = $('.hide_categoria');
+            categorias.each(function(i, obj) {
+                
+                if($(obj).attr('data-id')==label.attr('data-id')){
+                    console.log($(obj).attr('data-id'));
+                    if(label.attr('data-action') == 'show'){
+                        $(obj).show();
+                        label.html('Ver menos');
+                        label.attr('data-action','hide')
+                    }else{
+                        $(obj).hide();
+                        label.html('Ver más');
+                        label.attr('data-action','show')
+                    }
+
+                }
+            });
+
+        });
+
+
+    $('.ver_categoria_web').click(function(){
+            var label =  $(this);
+            console.log(label.attr('data-id'));
+            var categorias = $('.hide_categoria_web');
+            categorias.each(function(i, obj) {
+                
+                if($(obj).attr('data-id')==label.attr('data-id')){
+                    console.log($(obj).attr('data-id'));
+                    if(label.attr('data-action') == 'show'){
+                        $(obj).show();
+                        label.html('Ver menos');
+                        label.attr('data-action','hide')
+                    }else{
+                        $(obj).hide();
+                        label.html('Ver más');
+                        label.attr('data-action','show')
+                    }
+
+                }
+            });
+
+        });
 
 
 
@@ -2769,7 +2901,10 @@ function addCartItem(param){
 
 
 
- 
+
+        
+
+
 
 
 </script>

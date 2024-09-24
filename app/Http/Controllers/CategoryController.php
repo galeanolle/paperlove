@@ -55,7 +55,7 @@ class CategoryController extends Controller
         $category->slug = Str::slug(request('name'));
         $category->save();
     
-        return redirect()->route('admin.category')->with('success','Successfully added the product!');
+        return redirect()->route('admin.category')->with('success','La categoría se agrego correctamente');
     }
 
 
@@ -80,7 +80,43 @@ class CategoryController extends Controller
         $category->slug = Str::slug(request('name'));
         $category->save();
 
-        return redirect()->route('admin.category')->with('success','Successfully edited the product!');
+        $message = Array('Se editó la categoria correctamente.');
+
+        if(request('price')!=''){
+            if(request('id_parent')==0){
+                $categories = Category::select('id','name')->where('id_parent','=',$id)->get();
+                foreach ($categories as $category) {
+                    $totalProducts = Product::where('category_id','=',$category->id)->count();
+                    Product::where('category_id','=',$category->id)->update(['price'=>request('price')]);
+                    array_push($message, "Se actualizo el precio $".request('price')." a ".$totalProducts." productos  asociado/s a la categoria '".request('name').">".$category->name."'");
+                }
+            }else{
+                $nameCategoryParent = Category::select('name')->where('id','=',request('id_parent'))->first()->name;
+                $totalProducts = Product::where('category_id','=',$id)->count();
+                Product::where('category_id','=',$id)->update(['price'=>request('price')]);
+                array_push($message,"Se actualizo el precio $".request('price')." a ".$totalProducts." productos asociado/s a la categoria '".$nameCategoryParent.">".request('name')."'");
+            }
+        }
+
+        if(request('percent')!=''){
+            if(request('id_parent')==0){
+                $categories = Category::select('id','name')->where('id_parent','=',$id)->get();
+                foreach ($categories as $category) {
+                    $totalProducts = Product::where('category_id','=',$category->id)->count();
+                    Product::where('category_id','=',$category->id)->update(['percent'=>request('percent')]);
+                    array_push($message, "Se actualizo el porcentaje de descuento ".request('percent')."% a ".$totalProducts." productos  asociado/s a la categoria '".request('name').">".$category->name."'");
+                }
+            }else{
+                $nameCategoryParent = Category::select('name')->where('id','=',request('id_parent'))->first()->name;
+                $totalProducts = Product::where('category_id','=',$id)->count();
+                Product::where('category_id','=',$id)->update(['percent'=>request('percent')]);
+                array_push($message,"Se actualizo el porcentaje de descuento ".request('percent')."% a ".$totalProducts." productos asociado/s a la categoria '".$nameCategoryParent.">".request('name')."'");
+            }
+        }
+        
+        
+
+        return redirect()->route('admin.category')->with('success',$message);
         
     }
 

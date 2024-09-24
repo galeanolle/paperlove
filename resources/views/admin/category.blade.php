@@ -3,6 +3,23 @@
 @section ('content')
 
 <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+
+    @if(Session::has('success'))
+    <div class="row">
+      <div class="col-12">
+        <div id="charge-message" class="alert alert-success">
+          @if(is_array(Session::get('success')))
+            @foreach(Session::get('success') as $item)
+                {{ $item }} <br>
+            @endforeach
+          @else
+            {{ Session::get('success') }}
+          @endif
+        </div>
+      </div>
+    </div>
+    @endif
+
     <div class="card">
         <div class="card-header">
             <h5>Categorías</h5>

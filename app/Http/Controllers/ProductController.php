@@ -95,7 +95,8 @@ class ProductController extends Controller
                 ->leftjoin('stocks','variants.id','=','stocks.variant_id')
                 ->select('variant_groups.name as variant_group_name',
                          'variants.id as variant_id',
-                         'variants.name as variant_name'
+                         'variants.name as variant_name',
+                         'variant_groups.id as variant_group_id'
                 )
                 ->selectRaw("IFNULL(SUM(stocks.quantity),0) as total_stock")->groupBy('variant_groups.name','variants.id','variants.name')
                 ->orderBy('variants.variant_group_id','DESC')
@@ -158,7 +159,8 @@ class ProductController extends Controller
                 ->leftjoin('categories','products.category_id','=','categories.id')
                 ->select('variant_groups.name as variant_group_name',
                          'variants.id as variant_id',
-                         'variants.name as variant_name'
+                         'variants.name as variant_name',
+                         'variant_groups.id as variant_group_id'
                 )
                 ->where('categories.id_parent','=', $existCategory->first()->id)
                 ->selectRaw("IFNULL(SUM(stocks.quantity),0) as total_stock")->groupBy('variant_groups.name','variants.id','variants.name')
@@ -226,7 +228,8 @@ class ProductController extends Controller
                     ->leftjoin('products','products.id','=','stocks.product_id')
                     ->select('variant_groups.name as variant_group_name',
                              'variants.id as variant_id',
-                             'variants.name as variant_name'
+                             'variants.name as variant_name',
+                             'variant_groups.id as variant_group_id'
                     )
                     ->where('products.category_id','=',$existSubCategory->first()->id)
                     ->selectRaw("IFNULL(SUM(stocks.quantity),0) as total_stock")->groupBy('variant_groups.name','variants.id','variants.name')
