@@ -614,7 +614,7 @@ Ver carrito
  data-name="{{$variantGroup->variant_group_name}}">
 @endif
 
-<input type="checkbox" class="filter-checkbox" id="variant_{{ $variantGroup->variant_id }}" data-id="{{ $variantGroup->variant_id }}" /> {{$variantGroup->variant_group_id}}  {{ $variantGroup->variant_name }} <!--({{$variantGroup->total_stock}})--></label>
+<input type="checkbox" class="filter-checkbox" id="variant_{{ $variantGroup->variant_id }}" data-id="{{ $variantGroup->variant_id }}" />  {{ $variantGroup->variant_name }} <!--({{$variantGroup->total_stock}})--></label>
 
 <?php $totalVistaWeb--; ?>
 
