@@ -600,7 +600,7 @@ Ver carrito
     <br>
     <h6 class="m-bottom"> {{ $variantGroup->variant_group_id }} {{ $variantGroup->variant_group_name }}</h6>
     <?php $groupName = $variantGroup->variant_group_name; 
-    $totalVistaWeb = 3;
+    $totalVistaWeb = 5;
     ?>
 @endif
 
