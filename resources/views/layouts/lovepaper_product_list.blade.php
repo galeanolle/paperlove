@@ -598,19 +598,23 @@ Ver carrito
     </div>
     <div id="grupo_categoria_web_{{$variantGroup->variant_group_id}}">
     <br>
-    <h6 class="m-bottom">{{ $variantGroup->variant_group_name }}</h6>
+    <h6 class="m-bottom"> {{ $variantGroup->variant_group_id }} {{ $variantGroup->variant_group_name }}</h6>
     <?php $groupName = $variantGroup->variant_group_name; 
-    $totalVistaWeb = 5;
+    $totalVistaWeb = 3;
     ?>
 @endif
 
+<!--
+<label>{{ $variantGroup->variant_name }}</label>
+-->
 @if($totalVistaWeb>0)
 <label>
 @else
-<label class="hide_categoria_web" data-id="{{$variantGroup->variant_group_id}}">
+<label class="hide_categoria_web" data-id="{{$variantGroup->variant_group_id}}"
+ data-name="{{$variantGroup->variant_group_name}}">
 @endif
 
-<input type="checkbox" class="filter-checkbox" id="variant_{{ $variantGroup->variant_id }}" data-id="{{ $variantGroup->variant_id }}" />   {{ $variantGroup->variant_name }} <!--({{$variantGroup->total_stock}})--></label>
+<input type="checkbox" class="filter-checkbox" id="variant_{{ $variantGroup->variant_id }}" data-id="{{ $variantGroup->variant_id }}" /> {{$variantGroup->variant_group_id}}  {{ $variantGroup->variant_name }} <!--({{$variantGroup->total_stock}})--></label>
 
 <?php $totalVistaWeb--; ?>
 
@@ -1222,7 +1226,6 @@ window.onload = function(){
               
     });
 
-
      $('.ver_categoria_web').each(function(i, obj) {
         var id = $(obj).attr('data-id');
         var element = $(obj).detach();
@@ -1239,41 +1242,46 @@ window.onload = function(){
                 if($(obj).attr('data-id')==label.attr('data-id')){
                     console.log($(obj).attr('data-id'));
                     if(label.attr('data-action') == 'show'){
-                        $(obj).show();
-                        label.html('Ver menos');
-                        label.attr('data-action','hide')
+                        $(obj).css('display','block');
                     }else{
-                        $(obj).hide();
-                        label.html('Ver más');
-                        label.attr('data-action','show')
+                        $(obj).css('display','none');
                     }
 
                 }
             });
-
+            if(label.attr('data-action') == 'show'){
+                label.html('Ver menos');
+                label.attr('data-action','hide')
+            }else{
+                label.html('Ver más');
+                label.attr('data-action','show')
+            }
         });
 
 
     $('.ver_categoria_web').click(function(){
             var label =  $(this);
-            console.log(label.attr('data-id'));
             var categorias = $('.hide_categoria_web');
             categorias.each(function(i, obj) {
-                
+                console.log('('+$(obj).attr('data-id')+')','('+$(obj).attr('data-name')+')','['+label.attr('data-id')+']')
                 if($(obj).attr('data-id')==label.attr('data-id')){
-                    console.log($(obj).attr('data-id'));
+                    console.log('ver',$(obj).attr('data-id'));
                     if(label.attr('data-action') == 'show'){
-                        $(obj).show();
-                        label.html('Ver menos');
-                        label.attr('data-action','hide')
+                        $(obj).css('display','block');
                     }else{
-                        $(obj).hide();
-                        label.html('Ver más');
-                        label.attr('data-action','show')
+                        $(obj).css('display','none');
+                        
                     }
 
                 }
             });
+            if(label.attr('data-action') == 'show'){
+                label.html('Ver menos');
+                label.attr('data-action','hide')
+            }else{
+                label.html('Ver más');
+                label.attr('data-action','show')
+            }
 
         });
 
