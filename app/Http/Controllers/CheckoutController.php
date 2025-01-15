@@ -144,8 +144,9 @@ class CheckoutController extends Controller
         $url = 'https://lovepaper.com.ar';
         if($request->get('paymenttype')==1){
             // Pago con MercadoPago
-            MercadoPago\SDK::setAccessToken('APP_USR-5313401638247144-021215-08fdf3249b42e0a553e4b72d951bdc8f-521851047');
-
+            // MercadoPago\SDK::setAccessToken('APP_USR-5313401638247144-021215-08fdf3249b42e0a553e4b72d951bdc8f-521851047');
+            MercadoPago\SDK::setAccessToken('APP_USR-1478603196108773-032915-48afff7ad10e64851223472b75f96080-232055040');
+            
             // Default value is set to SERVER
             //MercadoPago\SDK::setRuntimeEnviroment(MercadoPago\SDK::LOCAL);
 
